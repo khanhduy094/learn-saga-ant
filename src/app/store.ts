@@ -2,21 +2,22 @@ import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@redu
 import counterReducer from '../features/counter/counterSlice';
 import createSagaMiddleware from '@redux-saga/core';
 import rootSaga from './rootSaga';
+import authReducer from 'features/auth/authSlice';
 
 const sagaMiddleWare = createSagaMiddleware();
-
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    auth: authReducer,
   },
   devTools: true,
   // thêm saga middleware vào redux
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleWare)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleWare),
 });
 
 //run saga
-sagaMiddleWare.run(rootSaga)
+sagaMiddleWare.run(rootSaga);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
