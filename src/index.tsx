@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+import NavigateSetter from 'components/MyNavigate';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -14,6 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <NavigateSetter />
         <App />
       </BrowserRouter>
     </Provider>

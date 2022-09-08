@@ -23,7 +23,7 @@ function App() {
   }
   return (
     <div>
-      <Button  type='primary' onClick={handleLogoutClick}>Logout</Button>
+      {/* <Button  type='primary' onClick={handleLogoutClick}>Logout</Button> */}
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         {/* private route react-router-v6 typescript */}

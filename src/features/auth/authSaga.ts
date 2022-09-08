@@ -1,19 +1,23 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { call, delay, fork, put, take } from 'redux-saga/effects';
+import History from 'utils/history';
 import { authActions, LoginPayload } from './authSlice';
 
 function* handleLogin(payload: LoginPayload) {
   try {
+    console.log("login");
+    
     yield delay(1000);
     localStorage.setItem('access_token', 'fake_token');
 
     // dispatch loginSuccess action chứa info user
-    put(
+    yield put(
       authActions.loginSuccess({
         id: 1,
         name: 'Khánh Duy',
       })
     );
+    History.push("/admin")
   } catch (error) {
     put(authActions.loginFailed(error.message));
   }
@@ -21,6 +25,8 @@ function* handleLogin(payload: LoginPayload) {
   // navigate to admin page
 }
 function* handleLogout() {
+  console.log("logout");
+  
   yield delay(1000);
   localStorage.removeItem('access_token');
   // navigate to login page

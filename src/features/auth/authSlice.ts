@@ -12,7 +12,7 @@ export interface LoginPayload {
     password: string
 }
 
-const initialState : AuthState = {
+const initialState: AuthState = {
     isLoggedIn: false,
     logging: false,
     currentUser: undefined
@@ -20,7 +20,7 @@ const initialState : AuthState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: initialState,
   reducers: {
     login(state, action: PayloadAction<LoginPayload>){
         state.logging = true;
