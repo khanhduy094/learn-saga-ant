@@ -1,10 +1,4 @@
-
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu } from 'antd';
-import HeaderLayout from 'components/Common/Header';
-import Sidebar from 'components/Common/Sidebar';
-import React, { useState } from 'react';
-import "./style.css"
+import * as React from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -12,39 +6,19 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-export interface AdminLayoutProps {}
+import { Layout, Menu } from 'antd';
+import "./style.css"
+import HeaderLayout from 'components/Common/Header';
 
-const { Header, Content, Footer, Sider } = Layout;
-
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
+const { Header, Sider, Content } = Layout;
+export interface  AdminLayoutProps {
 }
 
-const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-
-  // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
-];
-
-export default function AdminLayout(props: AdminLayoutProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export default function AdminLayout (props:  AdminLayoutProps) {
+  const [collapsed, setCollapsed] = React.useState(false);
   return (
-    <Layout>
-    <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Layout style={{minHeight: "100vh"}}>
+    <Sider  trigger={null} collapsible collapsed={collapsed}>
       <div className="logo" />
       <Menu
         theme="dark"
@@ -54,28 +28,25 @@ export default function AdminLayout(props: AdminLayoutProps) {
           {
             key: '1',
             icon: <UserOutlined />,
-            label: 'nav 1',
+            label: 'Student',
           },
           {
             key: '2',
             icon: <VideoCameraOutlined />,
-            label: 'nav 2',
+            label: 'Dashboard',
           },
-          {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: 'nav 3',
-          },
+
         ]}
       />
     </Sider>
     <Layout className="site-layout">
-      <Header className="site-layout-background" style={{ padding: 0 }}>
+      {/* <Header className="site-layout-background" style={{ padding: 0 }}>
         {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
           className: 'trigger',
           onClick: () => setCollapsed(!collapsed),
         })}
-      </Header>
+      </Header> */}
+      <HeaderLayout collapsed={collapsed} setCollapsed={setCollapsed}/>
       <Content
         className="site-layout-background"
         style={{

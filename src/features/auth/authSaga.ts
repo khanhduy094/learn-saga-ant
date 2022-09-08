@@ -17,7 +17,7 @@ function* handleLogin(payload: LoginPayload) {
         name: 'Khánh Duy',
       })
     );
-    History.push("/admin")
+    yield History.push("/admin")
   } catch (error) {
     put(authActions.loginFailed(error.message));
   }
@@ -29,6 +29,7 @@ function* handleLogout() {
   
   yield delay(1000);
   localStorage.removeItem('access_token');
+  yield History.push("/login")
   // navigate to login page
 }
 
