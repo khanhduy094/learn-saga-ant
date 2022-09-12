@@ -1,21 +1,52 @@
 import { Menu } from 'antd';
 import Sider from 'antd/lib/layout/Sider';
 import * as React from 'react';
+import { DashboardOutlined, UserOutlined } from '@ant-design/icons';
+import { Link, Outlet } from 'react-router-dom';
 
 export interface SidebarProps {
   collapsedProp?: boolean | undefined;
-  setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
-  items: any;
+  // setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Sidebar(props: SidebarProps) {
-  const { collapsedProp, setCollapsed, items } = props;
+  const { collapsedProp } = props;
   return (
-    <>
-      <Sider collapsible collapsed={collapsedProp} onCollapse={(value) => setCollapsed(value)}>
-        <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-      </Sider>
-    </>
+    <Sider trigger={null} collapsible collapsed={collapsedProp}>
+      <div className="logo" />
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={['1']}
+        // items={[
+        //   {
+        //     key: '1',
+        //     icon: <UserOutlined />,
+        //     label: 'Student',
+        //   },
+        //   {
+        //     key: '2',
+        //     icon: <VideoCameraOutlined />,
+        //     label: 'Dashboard',
+        //   },
+
+        // ]}
+      >
+    
+        <Menu.Item>
+          <Link to="/admin/dashboard">
+            <UserOutlined />
+            <span>Dashboard</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/admin/students ">
+            <DashboardOutlined />
+            <span>Student</span>
+          </Link>
+        </Menu.Item>
+        
+      </Menu>
+    </Sider>
   );
 }

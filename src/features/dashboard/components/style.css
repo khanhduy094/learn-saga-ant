@@ -1,0 +1,11 @@
+.style-card{
+    /* style={{borderRadius: 8, border: "1px solid #eee", padding: 10}} */
+    border-radius: 8px;
+    border: 1ps solid #eee;
+    padding: 10px;
+}
+
+
+.style-table .ant-card-body {
+    /* min-width: 360px; */
+}

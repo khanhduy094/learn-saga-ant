@@ -17,7 +17,7 @@ function* handleLogin(payload: LoginPayload) {
         name: 'Khánh Duy',
       })
     );
-    yield History.push("/admin")
+    yield History.push("/admin/dashboard")
   } catch (error) {
     put(authActions.loginFailed(error.message));
   }
